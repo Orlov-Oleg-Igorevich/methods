@@ -76,9 +76,9 @@ test.each([
 });
 
 test.each([
-  [Character, ['Misha', 'Zombie', 100, 1, 1, 1], null, 'levelUp', 'level', 2],
-  [Character, ['Oleg', 'Swordsman', 50, 2, 7, 3], 15, 'damage', 'health', 35.45],
-  [Character, ['Oleg', 'Swordsman', 50, 2, 7, 3], 10000, 'damage', 'health', 0],
+  [Undead, ['Misha'], null, 'levelUp', 'level', 2],
+  [Undead, ['Oleg'], 15, 'damage', 'health', 88.75],
+  [Undead, ['Oleg'], 10000, 'damage', 'health', 0],
 ])('test method', (classCharacter, paramsClass, paramsMethod, testMethod, testProperty, expected) => {
   const character = new classCharacter(...paramsClass);
   character[testMethod](paramsMethod);
@@ -86,7 +86,7 @@ test.each([
 })
 
 test('testing leveling up a dead character', () => {
-  const character = new Character('Oleg', 'Swordsman', 50, 2, 7, 3);
+  const character = new Swordsman('Oleg');
   character.damage(10000);
   expect(() => character.levelUp()).toThrow(new Error('Нельзя повысить левел умершего'));
 })
